@@ -1,4 +1,4 @@
-const app = require('express')();
+const express = require('express');
 const log4js = require('log4js');
 const processors = require('./processors');
 
@@ -18,8 +18,10 @@ log4js.configure({
 });
 const logger = log4js.getLogger('index.js');
 logger.info('Logging Initialised');
+const app = express();
 
 app.get('/departureBoards', (req, res) => processors.getBusesNearPostcode(req.query.postcode)
     .then((json) => res.send(json))
     .catch((error) => res.status(404).send('Invalid postcode')));
+app.use(express.static('frontend'));
 app.listen(80);
