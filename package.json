@@ -9,6 +9,7 @@
   "author": "Jack Rickard",
   "license": "ISC",
   "dependencies": {
+    "log4js": "^3.0.1",
     "readline-sync": "^1.4.9",
     "request": "^2.87.0"
   }
