@@ -1,3 +1,71 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+main {
+    width: 900px;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav {
+    background-color: firebrick;
+    width: 100%;
+    font-size: larger;
+}
+
+nav a {
+    display: table-cell;
+    text-decoration: none;
+    color: white;
+    padding: 1em 2em; 
+    vertical-align: middle;
+}
+
+nav a:hover {
+    background-color: darkred;
+}
+
+.title {
+    font-size: x-large;
+}
+
+figure {
+    width: 30%;
+    float: right;
+}
+
+input[type=submit] {
+    border-radius: 3px;
+    background-color: firebrick;
+    color: white;
+    border: 0 none;
+    padding: 5px;
+    box-shadow: 2px 2px darkred;
+}
+
+input[type=submit]:hover {
+    position: relative;
+    top: 2px;
+    left: 2px;
+    box-shadow: unset;
+}
+
+input[type=submit]:active {
+    background-color: darkred;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type=text] {
+    padding: 5px;
+}
+
+#results li {
+    list-style-type: '🡢';
+    padding-left: 0.5em;
 }

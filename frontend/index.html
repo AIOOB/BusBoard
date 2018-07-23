@@ -9,16 +9,22 @@
 </head>
 
 <body>
-    <h1>BusBoard</h1>
-    <a href="/stats">London Bus statistics</a>
-    <form action="javascript:void(0)" onsubmit="updateBuses(); void(0)">
+    <nav>
+        <a href="/" class="title">BusBoard</a>
+        <a href="/stats">Stats</a>
+        <a href="/depatureBoards?postcode=">API</a>
+    </nav>
+    <main>
+    <h1>Bus boards</h1>
+    <p>Enter a postcode, and find the next bus arrivals at the nearest bus stops.</p>
+    <form action="javascript:void(0)" onsubmit="updateBuses()">
         <label for="postcode">Postcode:</label>
-        <br>
         <input type="text" name="postcode" id="postcode">
         <input type="submit" value="Submit">
     </form>
     <div id="results">
     </div>
+    </main>
 </body>
 
 </html>
