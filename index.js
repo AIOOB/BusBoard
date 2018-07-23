@@ -12,16 +12,25 @@ log4js.configure({
     categories: {
         default: {
             appenders: ['file'],
-            level: 'debug'
+            level: 'trace'
         }
     }
 });
-const logger = log4js.getLogger('index.js');
+const logger = log4js.getLogger('index');
 logger.info('Logging Initialised');
 const app = express();
 
 app.get('/departureBoards', (req, res) => processors.getBusesNearPostcode(req.query.postcode)
     .then((json) => res.send(json))
-    .catch((error) => res.status(404).send('Invalid postcode')));
+    .catch((error) => {
+        logger.error(error);
+        if (error.name === 'StatusCodeError') {
+            res.status(error.statusCode).send(error.message);
+        } else {
+            res.status(500).send(error.message);
+        }
+    }));
 app.use(express.static('frontend'));
 app.listen(80);
+
+logger.info('Webserver initialised');
