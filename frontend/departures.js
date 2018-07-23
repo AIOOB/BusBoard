@@ -1,7 +1,13 @@
+postcode = undefined;
+
 function updateBuses() {
+    if (!postcode) {
+        return;
+    }
+
     var xhttp = new XMLHttpRequest();
 
-    xhttp.open('GET', './departureBoards?postcode=' + document.getElementById('postcode').value, true);
+    xhttp.open('GET', './departureBoards?postcode=' + window.postcode, true);
 
     xhttp.setRequestHeader('Content-Type', 'application/json');
 
@@ -21,3 +27,5 @@ function updateBuses() {
 
     xhttp.send();
 }
+
+setInterval(updateBuses, 30000);
