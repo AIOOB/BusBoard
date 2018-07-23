@@ -30,7 +30,7 @@ app.get('/departureBoards', (req, res) => processors.getBusesNearPostcode(req.qu
             res.status(500).send(error.message);
         }
     }));
-app.use(express.static('frontend'));
+app.use(express.static('frontend', {extensions:['html']}));
 app.listen(80);
 
 logger.info('Webserver initialised');
