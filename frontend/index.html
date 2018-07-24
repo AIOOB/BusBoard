@@ -17,7 +17,7 @@
     <main>
     <h1>Bus boards</h1>
     <p>Enter a postcode, and find the next bus arrivals at the nearest bus stops.</p>
-    <form action="javascript:void(0)" onsubmit="window.postcode = document.getElementById('postcode').value; updateBuses();">
+    <form action="javascript:void(0)" onsubmit="updateBuses(document.getElementById('postcode').value);">
         <label for="postcode">Postcode:</label>
         <input type="text" name="postcode" id="postcode">
         <input type="submit" value="Submit">

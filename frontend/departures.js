@@ -1,13 +1,15 @@
-postcode = undefined;
+let refreshId;
 
-function updateBuses() {
+function updateBuses(postcode) {
+    clearTimeout(refreshId)
+
     if (!postcode) {
         return;
     }
 
     var xhttp = new XMLHttpRequest();
 
-    xhttp.open('GET', './departureBoards?postcode=' + window.postcode, true);
+    xhttp.open('GET', './departureBoards?postcode=' + postcode, true);
 
     xhttp.setRequestHeader('Content-Type', 'application/json');
 
@@ -20,6 +22,8 @@ function updateBuses() {
                     return '<li>' + bus.timeToStation + ' minutes: ' + bus.lineName + ' to ' + bus.destination + '</li>'
                 }).join('') + '</ul>';
             }).join('');
+
+            refreshId = setTimeout(updateBuses, 30000, postcode);
         } else {
             results.innerHTML = '<h2>Results</h2><h3>' + xhttp.responseText + '</h3>';
         }
@@ -27,5 +31,3 @@ function updateBuses() {
 
     xhttp.send();
 }
-
-setInterval(updateBuses, 30000);
