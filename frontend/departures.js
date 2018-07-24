@@ -15,18 +15,20 @@ function updateBuses(postcode) {
 
     xhttp.onload = function () {
         var results = document.getElementById("results");
-        if (xhttp.status == 200) {
-            var stops = JSON.parse(xhttp.responseText);
-            results.innerHTML = '<h2>Results</h2>' + stops.map(stop => {
-                return '<h3>' + stop.stopName + '</h3> <ul>' + stop.nextBuses.map(bus => {
-                    return '<li>' + bus.timeToStation + ' minutes: ' + bus.lineName + ' to ' + bus.destination + '</li>'
-                }).join('') + '</ul>';
-            }).join('');
 
-            refreshId = setTimeout(updateBuses, 30000, postcode);
-        } else {
+        if (xhttp.status !== 200) {
             results.innerHTML = '<h2>Results</h2><h3>' + xhttp.responseText + '</h3>';
+            return;
         }
+
+        var stops = JSON.parse(xhttp.responseText);
+        results.innerHTML = '<h2>Results</h2>' + stops.map(stop => 
+            '<h3>' + stop.stopName + '</h3> <ul>' + stop.nextBuses.map(bus => 
+                '<li>' + bus.timeToStation + ' minutes: ' + bus.lineName + ' to ' + bus.destination + '</li>'
+            ).join('') + '</ul>'
+        ).join('');
+        
+        refreshId = setTimeout(updateBuses, 30000, postcode);
     }
 
     xhttp.send();

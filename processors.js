@@ -38,12 +38,12 @@ function getBusesNearPostcode(postcode) {
         if (tflResult.stopPoints.length === 0) {
             throw new Error('No stops found near postcode');
         }
-        return Promise.all(tflResult.stopPoints.slice(0, 2).map(stopPoint => {
-            return getBusesForStopCode(stopPoint.naptanId).then((buses) => ({
+        return Promise.all(tflResult.stopPoints.slice(0, 2).map(stopPoint => 
+            getBusesForStopCode(stopPoint.naptanId).then((buses) => ({
                 stopName: stopPoint.commonName,
                 nextBuses: buses,
-            }));``
-        }));
+            }))
+        ));
     });
 }
 
